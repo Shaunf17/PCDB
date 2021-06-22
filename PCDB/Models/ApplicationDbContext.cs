@@ -30,5 +30,6 @@ namespace PCDB.Models
         public DbSet<CPU> CPU { get; set; }
         public DbSet<Memory> Memory { get; set; }
         public DbSet<Storage> Storage { get; set; }
+        public DbSet<Manufacturer> Manufacturer { get; set; }
     }
 }

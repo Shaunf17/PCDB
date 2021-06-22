@@ -1,19 +1,18 @@
 ﻿using PCDB.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PCDB.Models.Components
 {
-    public class Memory : IComponent
+    public class Memory : Component
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public ComponentType ComponentType { get; set; } = ComponentType.Memory;
-        public string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Memory", "Products");
+        [DisplayName("Component Type")]
+        public override ComponentType ComponentType => ComponentType.Memory;
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Memory", "Products");
     }
 }

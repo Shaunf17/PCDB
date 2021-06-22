@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PCDB.Interfaces
 {
-    public interface IComponentRepository
+    public interface IComponentRepository<T> where T : class, IComponent
     {
-        IEnumerable<IComponent> GetAll();
-        IComponent GetById(int id);
-        void Insert(IComponent component);
-        void Update(IComponent component);
+        IEnumerable<T> GetAll();
+        T GetById(int id);
+        void Insert(T component);
+        void Update(T component);
         void Delete(int id);
         void Save();
     }

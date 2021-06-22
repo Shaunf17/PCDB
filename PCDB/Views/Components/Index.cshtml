@@ -3,16 +3,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-@foreach(var component in Model)
-{
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">@component.Name</h5>
-            <h6 class="card-substitle mb-2 text-muted">@component.Price</h6>
-            <p class="card-text">@component.Description</p>
-            <a href="@component.GetComponentTypeLink">@component.ComponentType</a>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2>Index</h2>
         </div>
     </div>
-}
+
+    @foreach (var component in Model)
+    {
+        <div class="row mt-2">
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@component.Name</h5>
+                        <h6 class="card-substitle mb-2 text-muted">@component.Price</h6>
+                        <p class="card-text">@component.Description</p>
+                        <a href="@component.GetComponentTypeLink">@component.ComponentType</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

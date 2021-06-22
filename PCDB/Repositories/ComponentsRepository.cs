@@ -4,58 +4,76 @@ using PCDB.Models.Components;
 using PCDB.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace PCDB.Repositories
 {
-    public class ComponentsRepository
+    public class ComponentsRepository<T> : IComponentRepository<T> where T : class, IComponent
     {
         private readonly ApplicationDbContext _context;
-
-        //public ComponentsRepository(ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
+        private DbSet<T> table = null;
 
         public ComponentsRepository()
         {
             _context = new ApplicationDbContext();
+            table = _context.Set<T>();
         }
 
-        public ComponentsViewModel GetComponentsViewModel()
+        public ComponentsRepository(ApplicationDbContext context)
         {
-            ComponentsViewModel componentsViewModel = new ComponentsViewModel()
+            _context = context;
+            table = context.Set<T>();
+        }
+
+        public void Delete(int id)
+        {
+            table.Remove(GetById(id));
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return table;
+        }
+
+        public T GetById(int id)
+        {
+            return table.Find(id);
+        }
+
+        public void Insert(T component)
+        {
+            table.Add(component);
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
+        public void Update(T component)
+        {
+            table.Attach(component);
+            _context.Entry(component).State = EntityState.Modified;
+        }
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
             {
-                CPU = GetCPU()
-            };
-
-            return componentsViewModel;
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
         }
 
-        public List<CPU> GetCPU()
+        public void Dispose()
         {
-            return _context.CPU.ToList();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
-        public CPU FindCPU(int id)
-        {
-            return _context.CPU.Find(id);
-        }
-
-        public List<Memory> GetMemory()
-        {
-            return _context.Memory.ToList();
-        }
-
-        public Memory FindMemory(int id)
-        {
-            return _context.Memory.Find(id);
-        }
-
-        //public List<IComponent> GetComponents(ComponentType componentType)
-        //{
-        //    return _context.
-        //}
     }
 }

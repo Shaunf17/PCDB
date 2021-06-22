@@ -1,23 +1,23 @@
 ﻿using PCDB.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PCDB.Models.Components
 {
-    public class CPU : IComponent
+    public class CPU : Component
     {
-        // Generic Properties
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public ComponentType ComponentType { get; set; } = ComponentType.CPU;
-        public string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPU", "Products");
+        [DisplayName("Component Type")]
+        public override ComponentType ComponentType => ComponentType.CPU;
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPU", "Products");
 
-        // Specifications
-        //public 
+        [DisplayName("Core Count")]
+        public int CoreCount { get; set; }
+        [DisplayName("Core Clock")]
+        public string CoreClock { get; set; }
     }
 }

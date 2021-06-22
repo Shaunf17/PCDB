@@ -1,0 +1,10 @@
+﻿/*
+    Extension file for Bootstrap v5.0.1
+    Author: Shaun Falconer
+    Date: 22/06/2021
+    v1.0
+*/
+
+.card:hover {
+    cursor:pointer;
+}

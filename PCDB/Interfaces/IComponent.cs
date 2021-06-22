@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCDB.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace PCDB.Interfaces
         string Name { get; set; }
         string Description { get; set; }
         decimal Price { get; set; }
-        ComponentType ComponentType { get; set; }
+        Manufacturer Manufacturer { get; set; }
+        ComponentType ComponentType { get; }
         string GetComponentTypeLink { get; }
     }
 

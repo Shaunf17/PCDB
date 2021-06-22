@@ -13,22 +13,21 @@ namespace PCDB.Controllers
 {
     public class ComponentsController : Controller
     {
-        private readonly IComponentRepository _CPURepository;
-        private readonly IComponentRepository _MemoryRepository;
+        //private readonly IComponentRepository<IComponent> _ComponentRepository;
+
+        private readonly IComponentRepository<CPU> _CPURepository;
+        private readonly IComponentRepository<Memory> _MemoryRepository;
 
         public ComponentsController()
         {
-            _CPURepository = new CPURepository();
-            _MemoryRepository = new MemoryRepository();
+            //_ComponentRepository = new ComponentsRepository<IComponent>();
+
+            _CPURepository = new ComponentsRepository<CPU>();
+            _MemoryRepository = new ComponentsRepository<Memory>();
         }
 
         public ActionResult Index()
         {
-            //ComponentsViewModel componentsViewModel = new ComponentsViewModel()
-            //{
-            //    CPU = (List<CPU>)_CPURepository.GetAll()
-            //};
-
             List<IComponent> componentList = new List<IComponent>();
             componentList.AddRange(_CPURepository.GetAll());
             componentList.AddRange(_MemoryRepository.GetAll());

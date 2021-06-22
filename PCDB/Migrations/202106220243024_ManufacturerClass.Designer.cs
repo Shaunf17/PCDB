@@ -7,13 +7,13 @@ namespace PCDB.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ComponentTypeSet : IMigrationMetadata
+    public sealed partial class ManufacturerClass : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ComponentTypeSet));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ManufacturerClass));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106211824088_ComponentTypeSet"; }
+            get { return "202106220243024_ManufacturerClass"; }
         }
         
         string IMigrationMetadata.Source
