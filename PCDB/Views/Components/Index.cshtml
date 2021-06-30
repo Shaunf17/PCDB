@@ -16,10 +16,11 @@
             <div class="col-sm">
                 <div class="card">
                     <div class="card-body">
+                        <div>@Html.DisplayNameFor(c => component.Name) </div>
                         <h5 class="card-title">@component.Name</h5>
                         <h6 class="card-substitle mb-2 text-muted">@component.Price</h6>
                         <p class="card-text">@component.Description</p>
-                        <a href="@component.GetComponentTypeLink">@component.ComponentType</a>
+                        <a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Interfaces.ComponentType)component.ComponentType)</a>
                     </div>
                 </div>
             </div>

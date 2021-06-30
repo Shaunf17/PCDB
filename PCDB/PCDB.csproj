@@ -188,11 +188,16 @@
     <Compile Include="Migrations\202106220316440_ComponentTypeReadonly.Designer.cs">
       <DependentUpon>202106220316440_ComponentTypeReadonly.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106222317434_CPUCooler.cs" />
+    <Compile Include="Migrations\202106222317434_CPUCooler.Designer.cs">
+      <DependentUpon>202106222317434_CPUCooler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Components\Component.cs" />
     <Compile Include="Models\Components\CPU.cs" />
+    <Compile Include="Models\Components\CPUCooler.cs" />
     <Compile Include="Models\Components\Memory.cs" />
     <Compile Include="Models\Components\Storage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -200,6 +205,7 @@
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComponentsRepository.cs" />
+    <Compile Include="Services\EnumHelper.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ComponentsViewModel.cs" />
   </ItemGroup>
@@ -301,7 +307,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -317,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106220316440_ComponentTypeReadonly.resx">
       <DependentUpon>202106220316440_ComponentTypeReadonly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106222317434_CPUCooler.resx">
+      <DependentUpon>202106222317434_CPUCooler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
