@@ -176,21 +176,9 @@
     </Compile>
     <Compile Include="Interfaces\IComponent.cs" />
     <Compile Include="Interfaces\IComponentRepository.cs" />
-    <Compile Include="Migrations\202106210209542_InitialMigration.cs" />
-    <Compile Include="Migrations\202106210209542_InitialMigration.Designer.cs">
-      <DependentUpon>202106210209542_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106220243024_ManufacturerClass.cs" />
-    <Compile Include="Migrations\202106220243024_ManufacturerClass.Designer.cs">
-      <DependentUpon>202106220243024_ManufacturerClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106220316440_ComponentTypeReadonly.cs" />
-    <Compile Include="Migrations\202106220316440_ComponentTypeReadonly.Designer.cs">
-      <DependentUpon>202106220316440_ComponentTypeReadonly.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106222317434_CPUCooler.cs" />
-    <Compile Include="Migrations\202106222317434_CPUCooler.Designer.cs">
-      <DependentUpon>202106222317434_CPUCooler.cs</DependentUpon>
+    <Compile Include="Migrations\202106301117210_Initial.cs" />
+    <Compile Include="Migrations\202106301117210_Initial.Designer.cs">
+      <DependentUpon>202106301117210_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,17 +302,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106210209542_InitialMigration.resx">
-      <DependentUpon>202106210209542_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106220243024_ManufacturerClass.resx">
-      <DependentUpon>202106220243024_ManufacturerClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106220316440_ComponentTypeReadonly.resx">
-      <DependentUpon>202106220316440_ComponentTypeReadonly.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106222317434_CPUCooler.resx">
-      <DependentUpon>202106222317434_CPUCooler.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106301117210_Initial.resx">
+      <DependentUpon>202106301117210_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
