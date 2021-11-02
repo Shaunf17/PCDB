@@ -1,12 +1,21 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color: #282838;
+    color: white;
+    font-family: "SF Pro Display", 'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navbar-items {
+    display: inline-flex;
+    width: 100%;
+    margin-left: 50px;
+    margin-right: 50px;
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

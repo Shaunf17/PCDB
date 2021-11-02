@@ -42,9 +42,15 @@ namespace PCDB.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "Admin" };
+                var user = new ApplicationUser 
+                { 
+                    UserName = "Admin",
+                    Email = "admin@PCDB.com",
+                    FirstName = "Admin",
+                    LastName = "User",
+                };
 
-                manager.Create(user, "password");
+                manager.Create(user, "P@ssw0rd");
                 manager.AddToRole(user.Id, "Admin");
             }
         }

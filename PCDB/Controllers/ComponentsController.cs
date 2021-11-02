@@ -26,6 +26,7 @@ namespace PCDB.Controllers
             _CPURepository = new ComponentsRepository<CPU>();
             _CPUCoolerRepository = new ComponentsRepository<CPUCooler>();
             _MemoryRepository = new ComponentsRepository<Memory>();
+
         }
 
         public ActionResult Index()
