@@ -25,8 +25,13 @@ namespace PCDB.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<CPU>().ToTable("CPU");
+            modelBuilder.Entity<CPUCooler>().ToTable("CPUCooler");
+            modelBuilder.Entity<Memory>().ToTable("Memory");
+            modelBuilder.Entity<Storage>().ToTable("Storage");
         }
 
+        public DbSet<Component> Components { get; set; }
         public DbSet<CPU> CPU { get; set; }
         public DbSet<CPUCooler> CPUCooler { get; set; }
         public DbSet<Memory> Memory { get; set; }

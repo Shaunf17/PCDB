@@ -14,5 +14,12 @@ namespace PCDB.Models.Components
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.Storage;
         public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Storage", "Products");
+
+        [DisplayName("Size")]
+        public decimal Size { get; set; }
+        [DisplayName("Read Speed")]
+        public int ReadSpeed { get; set; }
+        [DisplayName("Write Speed")]
+        public int WriteSpeed { get; set; }
     }
 }

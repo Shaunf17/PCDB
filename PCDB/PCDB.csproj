@@ -187,7 +187,6 @@
     <Compile Include="Models\Components\CPU.cs" />
     <Compile Include="Models\Components\CPUCooler.cs" />
     <Compile Include="Models\Components\Memory.cs" />
-    <Compile Include="Models\Components\Specification.cs" />
     <Compile Include="Models\Components\Storage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
