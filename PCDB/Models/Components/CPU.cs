@@ -13,7 +13,7 @@ namespace PCDB.Models.Components
     {
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.CPU;
-        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPU", "Products");
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPU", "Components");
 
         [DisplayName("Core Count")]
         public int CoreCount { get; set; }

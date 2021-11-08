@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,7 +19,15 @@ namespace PCDB
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
+            MailMessage msg = new MailMessage();
+            msg.Body = "Sent from PCDB";
+            msg.To.Add(message.Destination);
+            msg.Subject = "Hello, world!";
+
+            using (var smtp = new SmtpClient())
+            {
+                smtp.SendMailAsync(msg);
+            }
             return Task.FromResult(0);
         }
     }

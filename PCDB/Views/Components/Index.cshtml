@@ -1,4 +1,4 @@
-﻿@model List<PCDB.Interfaces.IComponent>
+﻿@model IEnumerable<PCDB.Models.Components.Component>
 @{
     ViewBag.Title = "Index";
 }
@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col-sm">
             <h2>Index</h2>
+            @Html.ActionLink("Create", "Create", "Components")
         </div>
     </div>
 
@@ -14,19 +15,17 @@
     {
         <div class="row mt-2">
             <div class="col-sm">
-                <div class="card">
-                    <div class="card-body">
-                        <div>@Html.DisplayNameFor(c => component.Name) </div>
-                        <h5 class="card-title">@component.Name</h5>
-                        <h6 class="card-substitle mb-2 text-muted">@component.Price</h6>
-                        <p class="card-text">@component.Description</p>
-                        <a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Interfaces.ComponentType)component.ComponentType)</a>
+                <a href="@Url.RouteUrl("ComponentDetails", new { componentName = component.Name.Replace(' ', '_') })" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@component.Name</h5>
+                            <h6 class="card-substitle mb-2 text-muted">@component.GetPrice()</h6>
+                            <p class="card-text">@component.Description</p>
+                            <a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Models.Components.ComponentType)component.ComponentType)</a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     }
 </div>
-
-
-

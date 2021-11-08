@@ -13,7 +13,7 @@ namespace PCDB.Models.Components
     {
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.Storage;
-        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Storage", "Products");
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Storage", "Components");
 
         [DisplayName("Size")]
         public decimal Size { get; set; }

@@ -1,4 +1,5 @@
 ﻿using PCDB.Models;
+using PCDB.Models.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,23 +18,6 @@ namespace PCDB.Interfaces
         Manufacturer Manufacturer { get; set; }
         ComponentType ComponentType { get; }
         string GetComponentTypeLink { get; }
-    }
-
-    public enum ComponentType
-    {
-        [Description("CPU")]
-        CPU,
-        [Description("CPU Cooler")]
-        CPUCooler,
-        [Description("Motherboard")]
-        Motherboard,
-        [Description("Memory")]
-        Memory,
-        [Description("Storage")]
-        Storage,
-        [Description("VideoCard")]
-        VideoCard,
-        [Description("[No Type]")]
-        NoType
+        string GetPrice();
     }
 }

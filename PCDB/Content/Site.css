@@ -8,6 +8,11 @@
 .body-content {
     padding-left: 50px;
     padding-right: 50px;
+    color: white;
+}
+
+.body-content .table {
+    color: white;
 }
 
 .navbar-items {
@@ -15,7 +20,18 @@
     width: 100%;
     margin-left: 50px;
     margin-right: 50px;
+}
 
+.navbar-right {
+    float: right;
+}
+
+.nav-link.text-white:hover {
+    color: #5cc1e8 !important;
+}
+
+.bg-black {
+    background-color: black;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -30,4 +46,21 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.card {
+    color: black !important;
+}
+
+.card a {
+    color: black !important;
+}
+
+.card a:hover {
+    text-decoration: none;
+    color: black !important;
+}
+
+.pointer {
+    cursor: pointer;
 }

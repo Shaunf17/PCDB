@@ -10,7 +10,7 @@ using System.Web;
 
 namespace PCDB.Repositories
 {
-    public class ComponentsRepository<T> : IComponentRepository<T> where T : class, IComponent
+    public class ComponentsRepository<T> : IDisposable, IComponentRepository<T> where T : class, IComponent
     {
         private readonly ApplicationDbContext _context;
         private DbSet<T> table = null;
@@ -25,6 +25,16 @@ namespace PCDB.Repositories
         {
             _context = context;
             table = context.Set<T>();
+        }
+
+        public T Find(int id)
+        {
+            return table.Find(id);
+        }
+
+        public T FindByName(string name)
+        {
+            return table.Where(n => n.Name == name).FirstOrDefault();
         }
 
         public void Delete(int id)

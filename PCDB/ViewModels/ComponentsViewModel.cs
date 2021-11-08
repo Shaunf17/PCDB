@@ -12,4 +12,9 @@ namespace PCDB.ViewModels
         public List<Memory> Memory { get; set; }
         public List<Storage> Storage { get; set; }
     }
+
+    public class ComponentCreateViewModel
+    {
+        public ComponentType ComponentType { get; set; }
+    }
 }

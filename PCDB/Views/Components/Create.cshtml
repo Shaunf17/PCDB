@@ -1,0 +1,28 @@
+﻿@model PCDB.ViewModels.ComponentCreateViewModel
+
+@{ 
+    ViewBag.Title = "Create";
+}
+
+<div class="my-md-4">
+    @Html.EnumDropDownListFor(m => m.ComponentType, "Select component type", new { id = "componentSelect", @class = "form-select pointer" })
+
+    <div id="createPartial">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#componentSelect").change(function () {
+        var selectValue = $("#componentSelect").val();
+
+        $.ajax({
+            url: "/Components/CreatePartial",
+            data: { componentValue: selectValue },
+            contentType: "application/json",
+            success: function (data) {
+                $("#createPartial").html(data);
+            }
+        });
+    });
+</script>

@@ -13,7 +13,7 @@ namespace PCDB.Models.Components
     {
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.CPUCooler;
-        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPUCooler", "Products");
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("CPUCooler", "Components");
 
 
     }

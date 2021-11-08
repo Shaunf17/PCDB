@@ -13,6 +13,6 @@ namespace PCDB.Models.Components
     {
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.Memory;
-        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Memory", "Products");
+        public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Memory", "Components");
     }
 }

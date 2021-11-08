@@ -2,6 +2,7 @@
 using PCDB.Models;
 using PCDB.Models.Components;
 using PCDB.Repositories;
+using PCDB.Services;
 using PCDB.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,69 +14,81 @@ namespace PCDB.Controllers
 {
     public class ComponentsController : Controller
     {
-        private readonly IComponentRepository<CPU> _CPURepository;
-        private readonly IComponentRepository<Storage> _StorageRepository;
-        private readonly IComponentRepository<CPUCooler> _CPUCoolerRepository;
-        private readonly IComponentRepository<Memory> _MemoryRepository;
+        private readonly IComponentRepository<Component> _componentRepository;
         
         public ComponentsController()
         {
-            _CPURepository = new ComponentsRepository<CPU>();
-            _StorageRepository = new ComponentsRepository<Storage>();
-            _CPUCoolerRepository = new ComponentsRepository<CPUCooler>();
-            _MemoryRepository = new ComponentsRepository<Memory>();
+            _componentRepository = new ComponentsRepository<Component>();
 
         }
 
         public ActionResult Index()
         {
-            List<IComponent> componentList = new List<IComponent>();
-            //componentList.AddRange(_CPURepository.GetAll());
-            //componentList.AddRange(_StorageRepository.GetAll());
-            //componentList.AddRange(_CPUCoolerRepository.GetAll());
-            //componentList.AddRange(_MemoryRepository.GetAll());
-
-            var repo = new ComponentsRepository<Component>();
-            componentList.AddRange(repo.GetAll());
-
-            return View(componentList);
+            return View(_componentRepository.GetAll());
         }
 
-        public ActionResult SeedData()
+        [Route("Components/View/{componentName}", Name = "ComponentDetails")]
+        public ActionResult Details(string componentName)
         {
-            CPU cpu = new CPU()
-            {
-                CoreClock = "3.9GHz",
-                CoreCount = 12,
-                Description = "New AMD Ryzen experience",
-                Name = "Ryzen 7 5800X",
-                Price = 79.99m
-            };
+            Component component = _componentRepository.FindByName(componentName.Replace('_', ' '));
+            
+            if (component == null) return View("ComponentNotFound");
+            return View(component);
+        }
 
-            var repo = new ComponentsRepository<Component>();
-            repo.Insert(cpu);
-            repo.Save();
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create()
+        {
+            return View(new ComponentCreateViewModel());
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult Create(Component component)
+        {
+            if (ModelState.IsValid)
+            {
+                _componentRepository.Insert(component);
+                _componentRepository.Save();
+            }
 
             return Content("Success");
         }
 
-        public ActionResult Details()
+        public ActionResult CreatePartial(string componentValue)
         {
-            var repo = new ComponentsRepository<Component>();
-            var compList = repo.GetAll();
-
-            string result = "";
-            foreach (var comp in compList)
+            var type = Enum.Parse(typeof(ComponentType), componentValue);
+            switch (type)
             {
-                result += $"\n{comp.Name} | {comp.Description} | {comp.Price}";
-                if (comp is CPU)
-                {
-                    var cpu = (CPU)comp;
-                    result += $"\n{cpu.CoreClock} | {cpu.CoreCount}";
-                }
+                case ComponentType.CPU:
+                    return PartialView("_Component_CreateCPU");
+                    
             }
 
-            return Content(result);
+            //return PartialView("_Component_CreateCPU");
+            return null;
+        }
+
+        public void CreateCPU(CPU cpu)
+        {
+            Create(cpu);
+        }
+
+        public void CreateCPUCooler(CPUCooler cpuCooler)
+        {
+            Create(cpuCooler);
+        }
+
+        public ActionResult CPU()
+        {
+            var _cpuRepository = new ComponentsRepository<CPU>();
+            return View(_cpuRepository.GetAll());
+        }
+
+        public void Send()
+        {
+            EmailService emailService = new EmailService();
+            emailService.SendAsync(new Microsoft.AspNet.Identity.IdentityMessage() { Destination = "shaunf1996@hotmail.co.uk" });
         }
     }
 }
