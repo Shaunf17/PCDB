@@ -26,7 +26,7 @@ namespace PCDB
 
             using (var smtp = new SmtpClient())
             {
-                smtp.SendMailAsync(msg);
+                smtp.Send(msg);
             }
             return Task.FromResult(0);
         }
