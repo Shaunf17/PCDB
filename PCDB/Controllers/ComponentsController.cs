@@ -85,10 +85,10 @@ namespace PCDB.Controllers
             return View(_cpuRepository.GetAll());
         }
 
-        public void Send()
+        public async void Send()
         {
             EmailService emailService = new EmailService();
-            emailService.SendAsync(new Microsoft.AspNet.Identity.IdentityMessage() { Destination = "shaunf1996@hotmail.co.uk" });
+            await emailService.SendAsync(new Microsoft.AspNet.Identity.IdentityMessage() { Destination = "shaunf1996@hotmail.co.uk" });
         }
     }
 }

@@ -17,7 +17,7 @@ namespace PCDB
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             MailMessage msg = new MailMessage();
             msg.Body = "Sent from PCDB";
@@ -26,9 +26,8 @@ namespace PCDB
 
             using (var smtp = new SmtpClient())
             {
-                smtp.Send(msg);
+                await smtp.SendMailAsync(msg);
             }
-            return Task.FromResult(0);
         }
     }
 
