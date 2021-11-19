@@ -1,4 +1,6 @@
-﻿@model IEnumerable<PCDB.Models.Components.Component>
+﻿@using PCDB.Models;
+@*@model IEnumerable<PCDB.Models.Components.Component>*@
+@model IPagedList<PCDB.Models.Components.Component>
 @{
     ViewBag.Title = "Index";
 }
@@ -21,11 +23,35 @@
                             <h5 class="card-title">@component.Name</h5>
                             <h6 class="card-substitle mb-2 text-muted">@component.GetPrice()</h6>
                             <p class="card-text">@component.Description</p>
-                            <a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Models.Components.ComponentType)component.ComponentType)</a>
+                            @*<a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Models.Components.ComponentType)component.ComponentType)</a>*@
+
                         </div>
                     </div>
                 </a>
             </div>
         </div>
     }
+    @*<div class="pager">
+        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+        
+    </div>*@
+
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .DisplayTemplate("Pagination")
+        .AlwaysAddFirstPageNumber()
+        .SetPreviousPageText("←")
+        .SetNextPageText("→"))
+
+    
+
+@*<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>*@
+
 </div>

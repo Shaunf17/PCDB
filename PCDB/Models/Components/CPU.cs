@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PCDB.Models.Components
 {
+    [DisplayName("CPU")]
     public class CPU : Component
     {
         [DisplayName("Component Type")]

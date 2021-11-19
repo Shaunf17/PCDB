@@ -1,5 +1,12 @@
-﻿@{
+﻿@model IEnumerable<PCDB.Models.Components.Component>
+
+@{
     ViewBag.Title = "PCDB";
 }
 
 <h1>Home Index</h1>
+
+@foreach (var item in Model)
+            {
+                @Html.DisplayName(item.ToString());
+            }

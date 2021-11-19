@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PCDB.Models.Components
 {
+    [DisplayName("CPU Cooler")]
     public class CPUCooler : Component
     {
         [DisplayName("Component Type")]

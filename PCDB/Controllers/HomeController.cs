@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCDB.Models.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,13 @@ namespace PCDB.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<Component> components = new List<Component>()
+            {
+                new CPU() { Name = "hello world" },
+                new CPUCooler() { Name = "Cooler 4000" },
+                new Case() { Name ="CAse" }
+            };
+            return View(components);
         }
 
         public ActionResult About()

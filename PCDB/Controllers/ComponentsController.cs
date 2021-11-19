@@ -1,4 +1,5 @@
-﻿using PCDB.Interfaces;
+﻿using MvcPaging;
+using PCDB.Interfaces;
 using PCDB.Models;
 using PCDB.Models.Components;
 using PCDB.Repositories;
@@ -15,16 +16,21 @@ namespace PCDB.Controllers
     public class ComponentsController : Controller
     {
         private readonly IComponentRepository<Component> _componentRepository;
-        
-        public ComponentsController()
+
+        public ComponentsController() : this(new ComponentsRepository<Component>())
+        { }
+
+        public ComponentsController(IComponentRepository<Component> componentRepository)
         {
-            _componentRepository = new ComponentsRepository<Component>();
+            _componentRepository = componentRepository;
 
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(_componentRepository.GetAll());
+            int defaultPageSize = 5;
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View(_componentRepository.GetAll().OrderBy(c => c.Name).ToPagedList(currentPageIndex, defaultPageSize));
         }
 
         [Route("Components/View/{componentName}", Name = "ComponentDetails")]
@@ -62,7 +68,10 @@ namespace PCDB.Controllers
             {
                 case ComponentType.CPU:
                     return PartialView("_Component_CreateCPU");
-                    
+                case ComponentType.CPUCooler:
+                    return PartialView("_Component_CreateCPUCooler");
+                case ComponentType.Memory:
+                    return PartialView("_Component_CreateMemory");
             }
 
             //return PartialView("_Component_CreateCPU");
