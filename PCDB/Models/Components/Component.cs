@@ -1,4 +1,5 @@
 ﻿using PCDB.Interfaces;
+using PCDB.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,21 @@ namespace PCDB.Models.Components
         public string Description { get; set; }
         [DisplayName("Price")]
         public decimal Price { get; set; }
+        [DisplayName("Image")]
+        public string ImageUrl { get; set; }
 
         public Manufacturer Manufacturer { get; set; }
         [DisplayName("Component Type")]
         public virtual ComponentType ComponentType => ComponentType.NoType;
         public virtual string GetComponentTypeLink => "";
-        public string GetPrice() => $"£{Price}";
+        public string GetPrice() => $"{GetCurrencySymbol()}{Price}";
+
+        public string GetImagePath() => ImageHelper.GetComponentImage(ImageUrl);
+
+        private char GetCurrencySymbol()
+        {
+            return '£';
+        }
     }
 
     public enum ComponentType

@@ -9,6 +9,14 @@
 <div>
     <h4>Component</h4>
     <hr />
+
+    <div class="admin-div">
+        @Html.ActionLink("Delete", "Delete", "Components", new { id = Model.Id }, new { @class = "btn btn-danger" })
+    </div>
+
+    <!--Test image-->
+    <img src="~/@Model.ImageUrl" height="100" width="100"/>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)

@@ -1,12 +1,14 @@
-﻿@model IEnumerable<PCDB.Models.Components.Component>
+﻿@model PCDB.Models.Components.CPU
 
 @{
     ViewBag.Title = "PCDB";
 }
 
-<h1>Home Index</h1>
-
-@foreach (var item in Model)
-            {
-                @Html.DisplayName(item.ToString());
-            }
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Welcome, @User.Identity.Name</h1>
+}
+else
+{
+    <h1>Welcome to PCDB</h1>
+}

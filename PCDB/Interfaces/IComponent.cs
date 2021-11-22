@@ -15,9 +15,11 @@ namespace PCDB.Interfaces
         string Name { get; set; }
         string Description { get; set; }
         decimal Price { get; set; }
+        string ImageUrl { get; set; }
         Manufacturer Manufacturer { get; set; }
         ComponentType ComponentType { get; }
         string GetComponentTypeLink { get; }
         string GetPrice();
+        string GetImagePath();
     }
 }

@@ -33,7 +33,14 @@ namespace PCDB.Controllers
             return View(_componentRepository.GetAll().OrderBy(c => c.Name).ToPagedList(currentPageIndex, defaultPageSize));
         }
 
-        [Route("Components/View/{componentName}", Name = "ComponentDetails")]
+        public ActionResult Delete(int id)
+        {
+            _componentRepository.Delete(id);
+            _componentRepository.Save();
+            return RedirectToAction("Index", routeValues: null);
+        }
+
+        [Route("Components/View/{componentId}/{componentName}", Name = "ComponentDetails")]
         public ActionResult Details(string componentName)
         {
             Component component = _componentRepository.FindByName(componentName.Replace('_', ' '));
@@ -50,15 +57,17 @@ namespace PCDB.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(Component component)
+        public ActionResult Create(Component component, HttpPostedFileBase image)//, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
+                component.ImageUrl = ImageHelper.UploadComponentImage(component, image);
+
                 _componentRepository.Insert(component);
                 _componentRepository.Save();
             }
 
-            return Content("Success");
+            return RedirectToAction("Index", routeValues: null);
         }
 
         public ActionResult CreatePartial(string componentValue)
@@ -78,14 +87,16 @@ namespace PCDB.Controllers
             return null;
         }
 
-        public void CreateCPU(CPU cpu)
+        [HttpPost]
+        public ActionResult CreateCPU(CPU cpu, HttpPostedFileBase ComponentImage)
         {
-            Create(cpu);
+            return Create(cpu, ComponentImage);
         }
 
-        public void CreateCPUCooler(CPUCooler cpuCooler)
+        [HttpPost]
+        public ActionResult CreateCPUCooler(CPUCooler cpuCooler, HttpPostedFileBase ComponentImage)
         {
-            Create(cpuCooler);
+            return Create(cpuCooler, ComponentImage);
         }
 
         public ActionResult CPU()

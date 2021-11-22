@@ -15,14 +15,24 @@
 
     @foreach (var component in Model)
     {
-        <div class="row mt-2">
+        <div class="row mt-2 mb-3">
             <div class="col-sm">
-                <a href="@Url.RouteUrl("ComponentDetails", new { componentName = component.Name.Replace(' ', '_') })" class="text-decoration-none">
+                @*<a href="@Url.RouteUrl("ComponentDetails", new { componentName = component.Name.Replace(' ', '_') })" class="text-decoration-none">*@
+                <a href="@Url.RouteUrl("ComponentDetails", new { componentId = component.Id, componentName = component.Name.Replace(' ', '_') })" class="text-decoration-none">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">@component.Name</h5>
-                            <h6 class="card-substitle mb-2 text-muted">@component.GetPrice()</h6>
-                            <p class="card-text">@component.Description</p>
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <img src="~/@component.ImageUrl" style="width: 100%; height: 100%;" />
+                                </div>
+                                <div class="col-sm-11">
+                                    <h5 class="card-title">@component.Name</h5>
+                                    <h6 class="card-substitle mb-2 text-muted">@component.GetPrice()</h6>
+                                    <p class="card-text">@component.Description</p>
+                                </div>
+                            </div>
+                            
                             @*<a href="@component.GetComponentTypeLink">@PCDB.Services.EnumHelper.GetDescription((PCDB.Models.Components.ComponentType)component.ComponentType)</a>*@
 
                         </div>

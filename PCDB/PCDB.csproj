@@ -199,6 +199,10 @@
     <Compile Include="Migrations\202111082259523_AdditionalComponentsAndEmail.Designer.cs">
       <DependentUpon>202111082259523_AdditionalComponentsAndEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111190345539_ImagePathAdded.cs" />
+    <Compile Include="Migrations\202111190345539_ImagePathAdded.Designer.cs">
+      <DependentUpon>202111190345539_ImagePathAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -217,6 +221,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ComponentsRepository.cs" />
     <Compile Include="Services\EnumHelper.cs" />
+    <Compile Include="Services\ImageHelper.cs" />
     <Compile Include="Services\InitializeDb.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ComponentsViewModel.cs" />
@@ -241,6 +246,14 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Images\CPU-vector.ico" />
     <Content Include="Content\Images\CPU-vector.png" />
+    <Content Include="Content\Images\cpu.png" />
+    <Content Include="Content\Images\fan.png" />
+    <Content Include="Content\Images\harddisk.png" />
+    <Content Include="Content\Images\motherboard.png" />
+    <Content Include="Content\Images\power.png" />
+    <Content Include="Content\Images\ram-memory.png" />
+    <Content Include="Content\Images\ssd.png" />
+    <Content Include="Content\Images\video-card.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -331,6 +344,7 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Images\CPU\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -343,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111082259523_AdditionalComponentsAndEmail.resx">
       <DependentUpon>202111082259523_AdditionalComponentsAndEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111190345539_ImagePathAdded.resx">
+      <DependentUpon>202111190345539_ImagePathAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

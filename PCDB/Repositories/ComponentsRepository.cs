@@ -1,6 +1,7 @@
 ﻿using PCDB.Interfaces;
 using PCDB.Models;
 using PCDB.Models.Components;
+using PCDB.Services;
 using PCDB.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,16 @@ namespace PCDB.Repositories
             return table.Where(n => n.Name == name).FirstOrDefault();
         }
 
+        public T FindByNameAndId(string name, int id)
+        {
+            return table.Where(n => n.Name == name && n.Id == id).FirstOrDefault();
+        }
+
         public void Delete(int id)
         {
-            table.Remove(GetById(id));
+            var component = GetById(id);
+            ImageHelper.RemoveImage(component.ImageUrl);
+            table.Remove(component);
         }
 
         public IEnumerable<T> GetAll()

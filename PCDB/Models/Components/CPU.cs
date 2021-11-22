@@ -19,6 +19,6 @@ namespace PCDB.Models.Components
         [DisplayName("Core Count")]
         public int CoreCount { get; set; }
         [DisplayName("Core Clock")]
-        public string CoreClock { get; set; }
+        public string CoreClock { get; set; } 
     }
 }
