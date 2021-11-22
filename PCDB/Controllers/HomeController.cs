@@ -11,13 +11,7 @@ namespace PCDB.Controllers
     {
         public ActionResult Index()
         {
-            List<Component> components = new List<Component>()
-            {
-                new CPU() { Name = "hello world" },
-                new CPUCooler() { Name = "Cooler 4000" },
-                new Case() { Name ="CAse" }
-            };
-            return View(components);
+            return View();
         }
 
         public ActionResult About()

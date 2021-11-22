@@ -9,6 +9,7 @@ namespace PCDB.Interfaces
     public interface IComponentRepository<T> where T : class, IComponent
     {
         T Find(int id);
+        T FindByNameAndId(string name, int id);
         T FindByName(string name);
         IEnumerable<T> GetAll();
         T GetById(int id);
