@@ -17,18 +17,29 @@ namespace PCDB.Repositories
         public AuthRepository()
         {
             _context = new ApplicationDbContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_context));
+            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
         }
 
-        public async Task<IdentityUser> FindUser(string username, string password)
+        public async Task<IdentityUser> FindUserAsync(string username, string password)
         {
             return await _userManager.FindAsync(username, password);
+        }
+
+        public IdentityUser FindUser(string username, string password)
+        {
+            return _userManager.Find(username, password);
         }
 
 
         public ApplicationUser ValidateUser(string username, string password)
         {
             throw new NotImplementedException();
+        }
+
+        public List<string> GetRoles(string username)
+        {
+            var user = _userManager.FindByName(username);
+            return _userManager.GetRoles(user.Id).ToList();
         }
 
         private bool disposed = false;

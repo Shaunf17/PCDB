@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using PCDB.Models;
@@ -31,10 +32,16 @@ namespace PCDB.Providers
                     context.SetError("Invalid Authentication", "The username or password is incorrect");
                     return;
                 }
-
+                
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                identity.AddClaim(new Claim("Name", context.UserName));
-                identity.AddClaim(new Claim("Role", "WebApiUser"));
+                //identity.AddClaim(new Claim("Name", context.UserName));
+                //identity.AddClaim(new Claim("Role", "WebApiUser"));
+
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                foreach (var role in _repo.GetRoles(user.UserName))
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                }
 
                 AuthenticationTicket ticket = new AuthenticationTicket(identity, new AuthenticationProperties());
                 context.Response.Cookies.Append("Token", context.Options.AccessTokenFormat.Protect(ticket));

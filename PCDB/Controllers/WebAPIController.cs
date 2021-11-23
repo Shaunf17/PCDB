@@ -46,7 +46,7 @@ namespace PCDB.Controllers
 
         [HttpPost]
         [Route("Create")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Create()
         {
             return Ok("Hello world");
