@@ -11,6 +11,7 @@ namespace PCDB.Interfaces
         T Find(int id);
         T FindByNameAndId(string name, int id);
         T FindByName(string name);
+        IEnumerable<T> FindByNameMultiple(string name);
         IEnumerable<T> GetAll();
         T GetById(int id);
         void Insert(T component);

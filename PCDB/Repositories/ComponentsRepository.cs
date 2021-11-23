@@ -38,6 +38,11 @@ namespace PCDB.Repositories
             return table.Where(n => n.Name == name).FirstOrDefault();
         }
 
+        public IEnumerable<T> FindByNameMultiple(string name)
+        {
+            return table.Where(n => n.Name.Contains(name));
+        }
+
         public T FindByNameAndId(string name, int id)
         {
             return table.Where(n => n.Name == name && n.Id == id).FirstOrDefault();
