@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202111190345539_ImagePathAdded.Designer.cs">
       <DependentUpon>202111190345539_ImagePathAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111230427495_MemorySizeSpeed.cs" />
+    <Compile Include="Migrations\202111230427495_MemorySizeSpeed.Designer.cs">
+      <DependentUpon>202111230427495_MemorySizeSpeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -233,6 +237,7 @@
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\ComponentsRepository.cs" />
+    <Compile Include="Services\CustomAttributes.cs" />
     <Compile Include="Services\EnumHelper.cs" />
     <Compile Include="Services\ImageHelper.cs" />
     <Compile Include="Services\InitializeDb.cs" />
@@ -373,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111190345539_ImagePathAdded.resx">
       <DependentUpon>202111190345539_ImagePathAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111230427495_MemorySizeSpeed.resx">
+      <DependentUpon>202111230427495_MemorySizeSpeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

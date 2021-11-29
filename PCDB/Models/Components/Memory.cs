@@ -11,6 +11,9 @@ namespace PCDB.Models.Components
 {
     public class Memory : Component
     {
+        public int Size { get; set; }
+        public int Speed { get; set; }
+
         [DisplayName("Component Type")]
         public override ComponentType ComponentType => ComponentType.Memory;
         public override string GetComponentTypeLink => new UrlHelper(HttpContext.Current.Request.RequestContext).Action("Memory", "Components");

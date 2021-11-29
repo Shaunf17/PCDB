@@ -58,6 +58,13 @@ namespace PCDB.Services
                 defaultImagePath = "Content/Images/video-card.png";
             }
 
+            // Create directory if it doesn't exist in file system
+            if (!DirectoryExists(directory))
+            {
+                var path = GetFullPath(directory);
+                Directory.CreateDirectory(directory);
+            }
+
             if (DirectoryExists(directory))
             {
                 if (image != null)
@@ -98,7 +105,7 @@ namespace PCDB.Services
         private static string GetFullPath(string directory)
         {
             var path = AppContext.BaseDirectory;
-            var uploadDirectory = "Uploads/Images/";
+            var uploadDirectory = @"Uploads\Images\";
             return Path.Combine(path, uploadDirectory, directory);
         }
 

@@ -26,6 +26,7 @@ namespace PCDB.Controllers
 
         }
 
+        [Log]
         public ActionResult Index(int? page)
         {
             int defaultPageSize = 5;
@@ -57,7 +58,7 @@ namespace PCDB.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Create(Component component, HttpPostedFileBase image)//, HttpPostedFileBase image)
+        public ActionResult Create(Component component, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
@@ -97,6 +98,12 @@ namespace PCDB.Controllers
         public ActionResult CreateCPUCooler(CPUCooler cpuCooler, HttpPostedFileBase ComponentImage)
         {
             return Create(cpuCooler, ComponentImage);
+        }
+
+        [HttpPost]
+        public ActionResult CreateMemory(Memory memory, HttpPostedFileBase ComponentImage)
+        {
+            return Create(memory, ComponentImage);
         }
 
         public ActionResult CPU()
