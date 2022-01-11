@@ -5,7 +5,10 @@
 }
 
 <div class="my-md-4">
-    @Html.EnumDropDownListFor(m => m.ComponentType, "Select component type", new { id = "componentSelect", @class = "form-select pointer" })
+    @*@Html.EnumDropDownListFor(m => m.ComponentType, "Select component type", new { id = "componentSelect", @class = "form-select pointer" })*@
+    
+    @Html.DropDownListFor(m => m.ComponentType, Model.ComponentType.ToSelectList(), "Select Component Type...",
+                          new { id = "componentSelect", @class = "form-select pointer" })
 
     <div id="createPartial">
 

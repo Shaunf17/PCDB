@@ -9,69 +9,35 @@ using System.Web.Mvc;
 
 namespace PCDB.Services
 {
-    public static class EnumHelper<T>
+    public static class EnumExtensions
     {
-        //public static string GetDescription<T>(this T enumValue)
-        //    where T : struct, IConvertible
-        //{
-        //    if (!typeof(T).IsEnum)
-        //        return null;
-
-        //    var description = enumValue.ToString();
-        //    var fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
-
-        //    if (fieldInfo != null)
-        //    {
-        //        var attrs = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), true);
-        //        if (attrs != null && attrs.Length > 0)
-        //        {
-        //            description = ((DescriptionAttribute)attrs[0]).Description;
-        //        }
-        //    }
-
-        //    return description;
-        //}
-
-        static EnumHelper()
+        public static SelectList ToSelectList<TEnum>(this TEnum obj)
+            where TEnum : struct, IConvertible
         {
-            var enumType = typeof(T);
-            if (!enumType.IsEnum) { throw new ArgumentException("Type '" + enumType.Name + "' is not an enum"); }
+            return new SelectList(Enum.GetValues(typeof(TEnum)).OfType<Enum>()
+                .Select(x =>
+                    new SelectListItem
+                    {
+                        Text = x.GetDescription(),
+                        Value = (Convert.ToInt32(x)).ToString()
+                    }), "Value", "Text");
         }
 
-        public static string GetEnumDescription(T value)
+        public static string GetDescription<TEnum>(this TEnum value)
         {
-            var fi = typeof(T).GetField(value.ToString());
-            var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-            return attributes.Length > 0 ? attributes[0].Description : value.ToString();
-        }
+            var description = value.ToString();
+            var fieldInfo = value.GetType().GetField(value.ToString());
 
-        public static IEnumerable<SelectListItem> GetSelectList()
-        {
-            var groupDictionary = new Dictionary<string, SelectListGroup>();
-
-            var enumType = typeof(T);
-            var fields = from field in enumType.GetFields()
-                         where field.IsLiteral
-                         select field;
-
-            foreach (var field in fields)
+            if (fieldInfo != null)
             {
-                var display = field.GetCustomAttribute<DisplayAttribute>(false);
-                var description = field.GetCustomAttribute<DescriptionAttribute>(false);
-                var group = field.GetCustomAttribute<CategoryAttribute>(false);
-
-                var text = display?.GetName() ?? display?.GetShortName() ?? display?.GetDescription() ?? display?.GetPrompt() ?? description?.Description ?? field.Name;
-                var value = field.Name;
-                var groupName = display?.GetGroupName() ?? group?.Category ?? string.Empty;
-                if (!groupDictionary.ContainsKey(groupName)) { groupDictionary.Add(groupName, new SelectListGroup { Name = groupName }); }
-
-                yield return new SelectListItem
+                var attrs = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), true);
+                if (attrs != null)
                 {
-                    Text = text,
-                    Value = value,
-                    Group = groupDictionary[groupName],
-                };
+                    description = ((DescriptionAttribute)attrs[0]).Description;
+                }
             }
+
+            return description;
         }
     }
 }
