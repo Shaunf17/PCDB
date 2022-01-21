@@ -15,6 +15,20 @@
     color: white;
 }
 
+.nav-wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+}
+
+.nav-top {
+    padding: 0.5em 0;
+}
+
+.nav-bottom {
+
+}
+
 .navbar-items {
     display: inline-flex;
     width: 100%;

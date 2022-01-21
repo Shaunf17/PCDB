@@ -196,6 +196,7 @@
     <Compile Include="Controllers\ComponentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\WebAPIController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Images\CPU-vector-logo.png" />
     <Content Include="Content\Images\CPU-vector.ico" />
     <Content Include="Content\Images\CPU-vector.png" />
     <Content Include="Content\Images\cpu.png" />
@@ -358,6 +360,7 @@
     <Content Include="Views\Shared\_Component_CreateCPUCooler.cshtml" />
     <Content Include="Views\Shared\_Component_CreateMemory.cshtml" />
     <Content Include="Views\Shared\_Component_CreateMotherboard.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
