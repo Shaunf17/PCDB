@@ -73,6 +73,9 @@ namespace PCDB.Controllers
 
         public ActionResult CreatePartial(string componentValue)
         {
+            if (String.IsNullOrEmpty(componentValue))
+                return null;
+
             var type = Enum.Parse(typeof(ComponentType), componentValue);
             switch (type)
             {
